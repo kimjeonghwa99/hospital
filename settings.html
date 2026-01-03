@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hospital ERP - 설정</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <style>
+    body { background:#f3f5ff; }
+    .page { max-width: 900px; margin: 16px auto; padding: 0 16px 24px; }
+    .topbar {
+      background:#4b53d3; color:#fff; padding:14px 18px;
+      display:flex; justify-content:space-between; align-items:center;
+      border-radius: 14px;
+    }
+    .card {
+      background:#fff; border-radius:16px; box-shadow:0 8px 18px rgba(0,0,0,0.08);
+      padding:14px; margin-top:14px;
+    }
+    .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    .field label { display:block; font-size:12px; color:#666; margin-bottom:6px; }
+    .field input {
+      width:100%; box-sizing:border-box; padding:10px;
+      border-radius:12px; border:1px solid #ddd; outline:none;
+      font-size: 13px;
+    }
+    .field input:focus { border-color:#4b53d3; }
+    .actions { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+    .btn { border:none; border-radius:12px; padding:10px 12px; cursor:pointer; font-size:13px; }
+    .primary { background:#4b53d3; color:#fff; }
+    .ghost { background:#fff; border:1px solid #ddd; color:#333; }
+    .hint { font-size:12px; color:#666; margin-top:8px; line-height:1.4; }
+    .notice { margin-top:12px; padding:12px; background:#fff7e6; border:1px solid #ffe5b0; border-radius:14px; color:#7a4b00; font-size:13px; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <div class="topbar">
+      <div><b>Hospital ERP</b> - 설정</div>
+      <div>
+        <a href="./dashboard.html" style="color:#fff; text-decoration:underline;">대시보드</a>
+        <span style="margin:0 10px; opacity:.7;">|</span>
+        <button id="logoutBtn" class="btn ghost">로그아웃</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin:0;">병원(근무지) 위치 설정</h3>
+      <div class="hint">
+        데모(프론트)에서는 주소를 자동으로 좌표로 변환하지 않습니다. 지도에서 위도/경도를 확인 후 입력하세요.
+        (실서비스는 백엔드에서 지오코딩 API 호출 권장)
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label>병원명</label>
+          <input id="siteName" placeholder="예: OO성형외과" />
+        </div>
+        <div class="field">
+          <label>병원 주소</label>
+          <input id="siteAddress" placeholder="예: 서울시 강남구 ..." />
+        </div>
+        <div class="field">
+          <label>위도(lat)</label>
+          <input id="siteLat" placeholder="예: 37.5665" />
+        </div>
+        <div class="field">
+          <label>경도(lng)</label>
+          <input id="siteLng" placeholder="예: 126.9780" />
+        </div>
+        <div class="field">
+          <label>출퇴근 허용 반경(m)</label>
+          <input id="siteRadius" placeholder="300" />
+        </div>
+        <div class="field">
+          <label>현재 설정 상태</label>
+          <input id="siteStatus" disabled value="미설정" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="saveBtn">저장</button>
+        <button class="btn ghost" id="fillGpsBtn">내 현재 위치로 좌표 채우기(테스트)</button>
+        <button class="btn ghost" id="clearBtn">설정 삭제</button>
+      </div>
+
+      <div class="notice" id="resultBox">
+        저장하면 대시보드 출퇴근(근거리) 기준이 이 값으로 적용됩니다.
+      </div>
+    </div>
+  </div>
+
+  <script src="js/geo.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
