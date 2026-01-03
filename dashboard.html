@@ -6,234 +6,144 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    body { margin:0; font-family: Arial, sans-serif; background:#f3f5ff; color:#222; }
-    .topbar { background:#4b53d3; color:#fff; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:10; }
-    .logout { border:1px solid rgba(255,255,255,0.5); background:transparent; color:#fff; padding:8px 10px; border-radius:10px; cursor:pointer; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f5ff;
+    }
 
-    .page { max-width:1000px; margin:16px auto; padding:0 16px 24px; }
-    .card { background:#fff; border-radius:16px; box-shadow:0 8px 18px rgba(0,0,0,0.08); padding:14px; }
-    .wrap { display:grid; grid-template-columns:260px 1fr; gap:14px; margin-top:14px; }
+    .topbar {
+      background: #4b53d3;
+      color: #fff;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    .menu a { display:block; padding:10px 12px; margin-bottom:8px; background:#f6f7ff; border-radius:12px; text-decoration:none; color:#222; }
-    .menu a:hover { background:#eceeff; }
+    .wrap {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 240px 1fr 320px;
+      gap: 16px;
+    }
 
-    .grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; margin-top:12px; }
-    .stat { border:1px solid #eee; border-radius:14px; padding:12px; }
-    .stat .label { font-size:12px; color:#666; margin-bottom:6px; }
-    .stat .value { font-size:18px; font-weight:700; }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
 
-    .btn { margin-top:10px; padding:10px; border-radius:12px; border:none; cursor:pointer; background:#4b53d3; color:#fff; font-size:14px; width:100%; }
-    .btn.out { background:#666; }
+    .menu a {
+      display: block;
+      padding: 10px;
+      margin-bottom: 8px;
+      background: #f6f7ff;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #222;
+    }
 
-    .notice { margin-top:12px; padding:12px; background:#fff7e6; border-radius:14px; font-size:13px; color:#7a4b00; line-height:1.4; border:1px solid #ffe5b0; }
+    .menu a:hover { background: #eceeff; }
 
-    /* 병원 설정 UI */
-    .site-grid { display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:10px; }
-    .field label { display:block; font-size:12px; color:#666; margin-bottom:6px; }
-    .field input { width:100%; box-sizing:border-box; padding:10px; border-radius:12px; border:1px solid #ddd; outline:none; }
-    .field input:focus { border-color:#4b53d3; }
-    .site-actions { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
-    .site-actions button { border:none; border-radius:12px; padding:10px 12px; cursor:pointer; font-size:13px; }
-    .primary { background:#4b53d3; color:#fff; }
-    .ghost { background:#fff; border:1px solid #ddd; color:#333; }
-    .tiny { font-size:12px; color:#666; margin-top:6px; }
+    /* ===== 메모 ===== */
+    .memo-list {
+      max-height: 300px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
 
-    @media (max-width:860px){
-      .wrap { grid-template-columns:1fr; }
-      .site-grid { grid-template-columns: 1fr; }
+    .memo {
+      border-bottom: 1px solid #eee;
+      padding: 8px 0;
+    }
+
+    .memo .from {
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .memo .time {
+      font-size: 11px;
+      color: #666;
+    }
+
+    .memo-form textarea {
+      width: 100%;
+      height: 70px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      padding: 8px;
+      resize: none;
+    }
+
+    .memo-form button {
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #4b53d3;
+      color: #fff;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <div class="topbar">
-    <div><b>Hospital ERP</b></div>
-    <div>
-      <span id="userInfo">사용자</span>
-      <button class="logout" id="logoutBtn">로그아웃</button>
+<div class="topbar">
+  <div>Hospital ERP</div>
+  <div id="userInfo"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- 메뉴 -->
+  <div class="card menu">
+    <a href="#">근태(출퇴근)</a>
+    <a href="#">직원 관리</a>
+    <a href="#">환자/상담</a>
+    <a href="#">예약</a>
+    <a href="#">설정</a>
+  </div>
+
+  <!-- 메인 -->
+  <div class="card">
+    <h2 id="welcomeTitle">대시보드</h2>
+    <p>초기 개발 단계(데모)</p>
+  </div>
+
+  <!-- 쪽지 -->
+  <div class="card">
+    <h3>📨 내부 쪽지</h3>
+    <div class="memo-list" id="memoList"></div>
+
+    <div class="memo-form">
+      <textarea id="memoInput" placeholder="의사 / 간호사 / 상담실장에게 전달할 메모"></textarea>
+      <button id="sendMemoBtn">쪽지 보내기</button>
     </div>
   </div>
 
-  <div class="page">
+</div>
 
-    <!-- ===== 병원(근무지) 설정 ===== -->
-    <div class="card">
-      <h3 style="margin:0;">병원(근무지) 설정</h3>
-      <div class="tiny">
-        데모에서는 주소를 좌표로 자동 변환하지 않습니다. 병원 위도/경도는 지도에서 확인 후 입력하세요.
-        (나중에 백엔드+지오코딩 API로 자동화 가능)
-      </div>
+<script src="js/memo.js"></script>
+<script>
+  // 로그인 체크
+  if (!localStorage.getItem('auth_token')) {
+    location.href = './login.html';
+  }
 
-      <div class="site-grid">
-        <div class="field">
-          <label>병원명</label>
-          <input id="siteName" placeholder="예: OO성형외과" />
-        </div>
-        <div class="field">
-          <label>병원 주소</label>
-          <input id="siteAddress" placeholder="예: 서울시 강남구 ..." />
-        </div>
-        <div class="field">
-          <label>위도(lat)</label>
-          <input id="siteLat" placeholder="예: 37.5665" />
-        </div>
-        <div class="field">
-          <label>경도(lng)</label>
-          <input id="siteLng" placeholder="예: 126.9780" />
-        </div>
-        <div class="field">
-          <label>출퇴근 허용 반경(m)</label>
-          <input id="siteRadius" placeholder="300" />
-        </div>
-        <div class="field">
-          <label>현재 병원 설정 상태</label>
-          <input id="siteStatusText" disabled value="미설정" />
-        </div>
-      </div>
+  const name = localStorage.getItem('demo_user_name') || '사용자';
+  const email = localStorage.getItem('demo_user_email') || '';
+  document.getElementById('userInfo').textContent =
+    email ? `${name} (${email})` : name;
 
-      <div class="site-actions">
-        <button class="primary" id="saveSiteBtn">병원 설정 저장</button>
-        <button class="ghost" id="fillGpsBtn">내 현재 위치로 좌표 채우기(테스트)</button>
-        <button class="ghost" id="clearSiteBtn">병원 설정 삭제</button>
-      </div>
-
-      <div class="tiny">
-        팁: 휴대폰에서 대시보드 열고 “내 현재 위치로 좌표 채우기”를 누르면, 지금 있는 곳을 병원 좌표로 저장할 수 있어요(테스트용).
-      </div>
-    </div>
-
-    <!-- ===== 기존 대시보드 ===== -->
-    <div class="wrap">
-      <div class="card menu">
-        <a href="#" onclick="alert('준비중입니다.'); return false;">근태(출퇴근)</a>
-        <a href="#" onclick="alert('준비중입니다.'); return false;">직원 관리</a>
-        <a href="#" onclick="alert('준비중입니다.'); return false;">환자/상담</a>
-        <a href="#" onclick="alert('준비중입니다.'); return false;">예약</a>
-        <a href="./settings.html">설정</a>
-      </div>
-
-      <div class="card">
-        <h2 id="welcomeTitle">대시보드</h2>
-        <div style="font-size:13px; color:#666;">초기 개발 단계(데모) 화면입니다.</div>
-
-        <div class="grid">
-          <div class="stat">
-            <div class="label">직군</div>
-            <div class="value" id="roleText">-</div>
-          </div>
-
-          <div class="stat">
-            <div class="label">오늘 출근</div>
-            <div class="value" id="checkInText">미처리</div>
-            <button class="btn" id="checkInBtn">출근하기</button>
-          </div>
-
-          <div class="stat">
-            <div class="label">오늘 퇴근</div>
-            <div class="value" id="checkOutText">미처리</div>
-            <button class="btn out" id="checkOutBtn">퇴근하기</button>
-          </div>
-
-          <div class="stat">
-            <div class="label">로그인 상태</div>
-            <div class="value">정상</div>
-          </div>
-        </div>
-
-        <div class="notice" id="distanceNotice">
-          병원 설정 후 출근/퇴근 버튼을 누르면, 반경 내에서만 처리됩니다.
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    // ===== 로그인 체크 =====
-    if (!localStorage.getItem('auth_token')) location.href = './login.html';
-
-    const name = localStorage.getItem('demo_user_name') || '사용자';
-    const email = localStorage.getItem('demo_user_email') || '';
-    const role = localStorage.getItem('demo_user_role') || '';
-    const roleMap = { doctor:'의사', nurse:'간호사', counselor:'상담실장', admin:'관리자' };
-
-    document.getElementById('userInfo').textContent = email ? `${name} (${email})` : name;
-    document.getElementById('welcomeTitle').textContent = `${name}님, 환영합니다`;
-    document.getElementById('roleText').textContent = roleMap[role] || '미설정';
-
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      localStorage.removeItem('auth_token');
-      location.href = './login.html';
-    });
-
-    // ===== 병원 설정 저장/로드 =====
-    const SITE_KEY = 'hospital_site';
-
-    function loadSiteToForm() {
-      try {
-        const raw = localStorage.getItem(SITE_KEY);
-        if (!raw) return;
-        const s = JSON.parse(raw);
-        document.getElementById('siteName').value = s.name || '';
-        document.getElementById('siteAddress').value = s.address || '';
-        document.getElementById('siteLat').value = s.lat ?? '';
-        document.getElementById('siteLng').value = s.lng ?? '';
-        document.getElementById('siteRadius').value = s.radiusM ?? 300;
-      } catch {}
-    }
-
-    document.getElementById('saveSiteBtn').addEventListener('click', () => {
-      const name = document.getElementById('siteName').value.trim();
-      const address = document.getElementById('siteAddress').value.trim();
-      const lat = Number(document.getElementById('siteLat').value);
-      const lng = Number(document.getElementById('siteLng').value);
-      const radiusM = Number(document.getElementById('siteRadius').value || 300);
-
-      if (!name || !address) {
-        alert('병원명/주소를 입력해주세요.');
-        return;
-      }
-      if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
-        alert('위도(lat), 경도(lng)는 숫자로 입력해주세요.');
-        return;
-      }
-      if (!Number.isFinite(radiusM) || radiusM <= 0) {
-        alert('허용 반경은 1 이상 숫자로 입력해주세요.');
-        return;
-      }
-
-      localStorage.setItem(SITE_KEY, JSON.stringify({ name, address, lat, lng, radiusM }));
-      alert('병원 설정 저장 완료!');
-
-      // attendance.js UI 갱신
-      if (window.__attendanceRefresh) window.__attendanceRefresh();
-    });
-
-    document.getElementById('clearSiteBtn').addEventListener('click', () => {
-      const ok = confirm('병원 설정을 삭제할까요?');
-      if (!ok) return;
-      localStorage.removeItem(SITE_KEY);
-      alert('삭제 완료');
-      if (window.__attendanceRefresh) window.__attendanceRefresh();
-    });
-
-    // 테스트용: 내 현재 위치를 병원 좌표로 채우기
-    document.getElementById('fillGpsBtn').addEventListener('click', async () => {
-      try {
-        const pos = await getCurrentPosition({ enableHighAccuracy: true });
-        document.getElementById('siteLat').value = pos.coords.latitude;
-        document.getElementById('siteLng').value = pos.coords.longitude;
-        alert('현재 위치로 위도/경도를 채웠습니다. 저장 버튼을 눌러 적용하세요.');
-      } catch {
-        alert('현재 위치를 가져오지 못했습니다. 위치 권한을 허용해주세요.');
-      }
-    });
-
-    loadSiteToForm();
-  </script>
-
-  <script src="js/geo.js"></script>
-  <script src="js/attendance.js"></script>
+  document.getElementById('welcomeTitle').textContent =
+    `${name}님, 환영합니다`;
+</script>
 
 </body>
 </html>
