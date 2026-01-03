@@ -83,7 +83,7 @@ function handleLogin() {
 
   // 데모 토큰 저장
   localStorage.setItem('auth_token', 'demo_token');
-  window.location.href = './index.html';
+  window.location.href = './dashboard.html';
 }
 
 // ===== 페이지별로 자동 바인딩 =====
