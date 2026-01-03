@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hospital ERP - 비밀번호 찾기</title>
+  <link rel="stylesheet" href="css/auth.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h2 class="title">Hospital ERP</h2>
+      <p class="subtitle">비밀번호 찾기</p>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input id="email" type="email" placeholder="가입한 이메일 입력" />
+        <p class="error-text" id="emailError"></p>
+      </div>
+
+      <button class="primary-btn" id="sendBtn">재설정 링크 보내기(데모)</button>
+
+      <p class="link-row" style="margin-top: 14px;">
+        로그인으로 돌아가기
+        <a href="./login.html">로그인</a>
+      </p>
+
+      <div id="resultBox" style="display:none; margin-top:14px; padding:12px; border-radius:12px; background:#f6f7ff; border:1px solid #eef0ff; font-size:13px; color:#333;"></div>
+    </div>
+  </div>
+
+  <script>
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    const emailEl = document.getElementById('email');
+    const emailErr = document.getElementById('emailError');
+    const sendBtn = document.getElementById('sendBtn');
+    const resultBox = document.getElementById('resultBox');
+
+    sendBtn.addEventListener('click', () => {
+      const email = emailEl.value.trim();
+      emailErr.textContent = '';
+      resultBox.style.display = 'none';
+      resultBox.textContent = '';
+
+      if (!email) {
+        emailErr.textContent = '이메일을 입력해주세요.';
+        return;
+      }
+      if (!validateEmail(email)) {
+        emailErr.textContent = '올바른 이메일 형식이 아닙니다.';
+        return;
+      }
+
+      // 데모: 실제로 메일 전송 대신 안내만
+      resultBox.style.display = 'block';
+      resultBox.textContent =
+        `데모 안내: "${email}" 로 비밀번호 재설정 링크를 전송했다고 가정합니다. (실서비스에서는 메일/DB 연동 필요)`;
+    });
+  </script>
+
+</body>
+</html>
