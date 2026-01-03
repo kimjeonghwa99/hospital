@@ -6,212 +6,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    /* ===== 대시보드 전용 (간단히 inline으로) ===== */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f5ff;
-      color: #222;
-    }
-    .topbar {
-      background: #4b53d3;
-      color: #fff;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .brand {
-      font-weight: 700;
-      letter-spacing: 0.2px;
-    }
-    .userbox {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      font-size: 13px;
-      opacity: 0.95;
-    }
-    .logout {
-      border: 1px solid rgba(255,255,255,0.5);
-      background: transparent;
-      color: #fff;
-      padding: 8px 10px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .wrap {
-      max-width: 1000px;
-      margin: 18px auto;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 14px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-      padding: 14px;
-    }
-
-    .menu h3 {
-      margin: 0 0 10px;
-      font-size: 14px;
-      color: #444;
-    }
-    .menu a {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: #222;
-      margin-bottom: 8px;
-      background: #f6f7ff;
-    }
-    .menu a:hover {
-      background: #eceeff;
-    }
-
-    .main h2 {
-      margin: 2px 0 8px;
-      font-size: 18px;
-    }
-    .muted {
-      color: #666;
-      font-size: 13px;
-      margin-top: 0;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .stat {
-      border: 1px solid #eee;
-      border-radius: 14px;
-      padding: 12px;
-    }
-    .stat .label {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 6px;
-    }
-    .stat .value {
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .notice {
-      margin-top: 12px;
-      padding: 12px;
-      background: #fff7e6;
-      border: 1px solid #ffe5b0;
-      border-radius: 14px;
-      font-size: 13px;
-      color: #7a4b00;
-    }
-
-    @media (max-width: 860px) {
-      .wrap { grid-template-columns: 1fr; }
-    }
+    body { margin:0; font-family: Arial, sans-serif; background:#f3f5ff; color:#222; }
+    .topbar { background:#4b53d3; color:#fff; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; }
+    .logout { border:1px solid rgba(255,255,255,0.5); background:transparent; color:#fff; padding:8px 10px; border-radius:10px; cursor:pointer; }
+    .page { max-width:1000px; margin:16px auto; padding:0 16px 24px; }
+    .card { background:#fff; border-radius:16px; box-shadow:0 8px 18px rgba(0,0,0,0.08); padding:14px; }
+    .wrap { display:grid; grid-template-columns:260px 1fr; gap:14px; margin-top:14px; }
+    .menu a { display:block; padding:10px 12px; margin-bottom:8px; background:#f6f7ff; border-radius:12px; text-decoration:none; color:#222; }
+    .menu a:hover { background:#eceeff; }
+    .grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; margin-top:12px; }
+    .stat { border:1px solid #eee; border-radius:14px; padding:12px; }
+    .stat .label { font-size:12px; color:#666; margin-bottom:6px; }
+    .stat .value { font-size:18px; font-weight:700; }
+    .btn { margin-top:10px; padding:10px; border-radius:12px; border:none; cursor:pointer; background:#4b53d3; color:#fff; font-size:14px; width:100%; }
+    .btn.out { background:#666; }
+    .notice { margin-top:12px; padding:12px; background:#fff7e6; border-radius:14px; font-size:13px; color:#7a4b00; line-height:1.4; border:1px solid #ffe5b0; }
+    @media (max-width:860px){ .wrap { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
 
   <div class="topbar">
-    <div class="brand">Hospital ERP</div>
-    <div class="userbox">
+    <div><b>Hospital ERP</b></div>
+    <div>
       <span id="userInfo">사용자</span>
       <button class="logout" id="logoutBtn">로그아웃</button>
     </div>
   </div>
 
-  <div class="wrap">
-    <!-- 좌측 메뉴 -->
-    <div class="card menu">
-      <h3>메뉴</h3>
-      <!-- 일단 링크는 # 처리. 나중에 페이지 만들면 연결 -->
-      <a href="#" onclick="alert('준비중입니다.'); return false;">근태(출퇴근)</a>
-      <a href="#" onclick="alert('준비중입니다.'); return false;">직원 관리</a>
-      <a href="#" onclick="alert('준비중입니다.'); return false;">환자/상담</a>
-      <a href="#" onclick="alert('준비중입니다.'); return false;">예약</a>
-      <a href="#" onclick="alert('준비중입니다.'); return false;">설정</a>
-    </div>
+  <div class="page">
+    <div class="wrap">
 
-    <!-- 메인 컨텐츠 -->
-    <div class="card main">
-      <h2 id="welcomeTitle">대시보드</h2>
-      <p class="muted" id="welcomeSub">초기 개발 단계(데모) 화면입니다.</p>
+      <div class="card menu">
+        <a href="#" onclick="alert('준비중입니다.'); return false;">근태(출퇴근)</a>
+        <a href="#" onclick="alert('준비중입니다.'); return false;">직원 관리</a>
+        <a href="#" onclick="alert('준비중입니다.'); return false;">환자/상담</a>
+        <a href="#" onclick="alert('준비중입니다.'); return false;">예약</a>
+        <a href="#" onclick="alert('준비중입니다.'); return false;">설정</a>
+      </div>
 
-      <div class="grid">
-        <div class="stat">
-          <div class="label">직군</div>
-          <div class="value" id="roleText">-</div>
+      <div class="card">
+        <h2 id="welcomeTitle">대시보드</h2>
+        <div style="font-size:13px; color:#666;">초기 개발 단계(데모) 화면입니다.</div>
+
+        <div class="grid">
+          <div class="stat">
+            <div class="label">직군</div>
+            <div class="value" id="roleText">-</div>
+          </div>
+
+          <div class="stat">
+            <div class="label">오늘 출근</div>
+            <div class="value" id="checkInText">미처리</div>
+            <button class="btn" id="checkInBtn">출근하기</button>
+          </div>
+
+          <div class="stat">
+            <div class="label">오늘 퇴근</div>
+            <div class="value" id="checkOutText">미처리</div>
+            <button class="btn out" id="checkOutBtn">퇴근하기</button>
+          </div>
+
+          <div class="stat">
+            <div class="label">로그인 상태</div>
+            <div class="value">정상</div>
+          </div>
         </div>
-        <div class="stat">
-          <div class="label">로그인 상태</div>
-          <div class="value">정상</div>
-        </div>
-        <div class="stat">
-          <div class="label">오늘 출근</div>
-          <div class="value">미처리</div>
-        </div>
-        <div class="stat">
-          <div class="label">오늘 퇴근</div>
-          <div class="value">미처리</div>
+
+        <div class="notice" id="distanceNotice">
+          출근/퇴근은 병원 반경 300m 이내에서만 가능합니다. (데모: 브라우저 GPS 사용)
         </div>
       </div>
 
-      <div class="notice">
-        현재는 데모(프론트) 상태입니다. 다음 단계에서 DB(MariaDB)와 API를 연결해
-        실제 로그인/권한/근태 기능을 구현할 예정입니다.
-      </div>
     </div>
   </div>
 
   <script>
-    // ===== 로그인 체크 (token 없으면 login으로) =====
-    const token = localStorage.getItem('auth_token');
-    if (!token) {
-      window.location.href = './login.html';
-    }
+    // ===== 로그인 체크 =====
+    if (!localStorage.getItem('auth_token')) location.href = './login.html';
 
-    // ===== 데모 사용자 표시 =====
     const name = localStorage.getItem('demo_user_name') || '사용자';
     const email = localStorage.getItem('demo_user_email') || '';
     const role = localStorage.getItem('demo_user_role') || '';
 
-    const roleMap = {
-      doctor: '의사',
-      nurse: '간호사',
-      counselor: '상담실장',
-      admin: '관리자'
-    };
+    const roleMap = { doctor:'의사', nurse:'간호사', counselor:'상담실장', admin:'관리자' };
 
-    document.getElementById('userInfo').textContent =
-      email ? `${name} (${email})` : name;
+    document.getElementById('userInfo').textContent = email ? `${name} (${email})` : name;
+    document.getElementById('welcomeTitle').textContent = `${name}님, 환영합니다`;
+    document.getElementById('roleText').textContent = roleMap[role] || '미설정';
 
-    document.getElementById('roleText').textContent =
-      roleMap[role] || (role ? role : '미설정');
-
-    document.getElementById('welcomeTitle').textContent =
-      `${name}님, 환영합니다`;
-
-    // ===== 로그아웃 =====
     document.getElementById('logoutBtn').addEventListener('click', () => {
       localStorage.removeItem('auth_token');
-      // 데모 가입정보는 남겨둬도 되고, 싹 지우고 싶으면 아래 주석 해제
-      // localStorage.removeItem('demo_user_name');
-      // localStorage.removeItem('demo_user_email');
-      // localStorage.removeItem('demo_user_role');
-      window.location.href = './login.html';
+      location.href = './login.html';
     });
   </script>
+
+  <!-- geo.js 먼저 -->
+  <script src="js/geo.js"></script>
+  <!-- attendance.js가 geo.js를 사용 -->
+  <script src="js/attendance.js"></script>
 
 </body>
 </html>
