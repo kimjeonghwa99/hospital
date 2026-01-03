@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hospital ERP - 회원가입</title>
+  <link rel="stylesheet" href="css/auth.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h2 class="title">Hospital ERP</h2>
+      <p class="subtitle">계정 만들기</p>
+
+      <div class="input-group">
+        <label>이름</label>
+        <input id="name" type="text" placeholder="이름 입력" />
+        <p class="error-text" id="nameError"></p>
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input id="email" type="email" placeholder="이메일 입력" />
+        <p class="error-text" id="emailError"></p>
+      </div>
+
+      <div class="input-group">
+        <label>직군</label>
+        <select id="role">
+          <option value="">선택하세요</option>
+          <option value="doctor">의사</option>
+          <option value="nurse">간호사</option>
+          <option value="counselor">상담실장</option>
+          <option value="admin">관리자</option>
+        </select>
+        <p class="error-text" id="roleError"></p>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input id="password" type="password" placeholder="비밀번호 입력 (6자 이상)" />
+        <p class="error-text" id="pwError"></p>
+      </div>
+
+      <div class="input-group">
+        <label>Password 확인</label>
+        <input id="password2" type="password" placeholder="비밀번호 다시 입력" />
+        <p class="error-text" id="pw2Error"></p>
+      </div>
+
+      <button class="primary-btn" id="signupBtn">계정 만들기</button>
+
+      <p class="link-row">
+        이미 계정이 있나요?
+        <a href="./login.html">로그인</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

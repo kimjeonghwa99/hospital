@@ -2,44 +2,42 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Hospital ERP Login</title>
-  <link rel="stylesheet" href="css/login.css" />
+  <title>Hospital ERP - 로그인</title>
+  <link rel="stylesheet" href="css/auth.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
 
-  <div class="login-wrapper">
-    <div class="login-card">
+  <div class="auth-wrapper">
+    <div class="auth-card">
       <h2 class="title">Hospital ERP</h2>
+      <p class="subtitle">로그인</p>
 
-      <!-- 이메일 -->
       <div class="input-group">
         <label>Email</label>
-        <input type="email" placeholder="이메일 입력" />
+        <input id="email" type="email" placeholder="이메일 입력" />
+        <p class="error-text" id="emailError"></p>
       </div>
 
-      <!-- 비밀번호 -->
-      <div class="input-group error">
+      <div class="input-group">
         <label>Password</label>
-        <input type="password" placeholder="비밀번호 입력" />
-        <p class="error-text">패스워드를 작성해주세요!</p>
+        <input id="password" type="password" placeholder="비밀번호 입력" />
+        <p class="error-text" id="pwError"></p>
       </div>
 
-      <!-- 비밀번호 찾기 -->
       <div class="find-password">
         <a href="#">패스워드를 잊어버리셨나요?</a>
       </div>
 
-      <!-- 로그인 버튼 -->
-      <button class="login-btn">로그인</button>
+      <button class="primary-btn" id="loginBtn">로그인</button>
 
-      <!-- 회원가입 -->
-      <p class="signup">
+      <p class="link-row">
         계정이 없다고요?
-        <a href="#">여기서 만들어보세요!</a>
+        <a href="./signup.html">여기서 만들어보세요!</a>
       </p>
     </div>
   </div>
 
+  <script src="js/auth.js"></script>
 </body>
 </html>

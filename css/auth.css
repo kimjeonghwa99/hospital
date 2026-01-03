@@ -1,0 +1,119 @@
+/* ===== 공통 배경/레이아웃 ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #4b53d3;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+.auth-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.title {
+  text-align: center;
+  margin: 0;
+  color: #333;
+  font-size: 26px;
+}
+
+.subtitle {
+  text-align: center;
+  margin: 8px 0 24px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* ===== 입력 ===== */
+.input-group {
+  margin-bottom: 14px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #666;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #4b53d3;
+}
+
+/* 에러 표시 */
+.input-group.error input,
+.input-group.error select {
+  border-color: #e74c3c;
+}
+
+.error-text {
+  color: #e74c3c;
+  font-size: 12px;
+  margin: 6px 0 0;
+  min-height: 14px;
+}
+
+/* ===== 링크/버튼 ===== */
+.link-row {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+}
+
+.link-row a {
+  color: #4b53d3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.find-password {
+  text-align: right;
+  margin: 6px 0 16px;
+}
+
+.find-password a {
+  font-size: 12px;
+  color: #777;
+  text-decoration: none;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  background: #4b53d3;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #3f47b8;
+}

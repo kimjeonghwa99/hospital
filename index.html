@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Hospital ERP</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-
 <script>
-  // 나중에 로그인 성공 시 localStorage에 저장할 예정
-  const isLoggedIn = localStorage.getItem('auth_token');
-
-  if (isLoggedIn) {
-    // 로그인 되어 있으면 메인 화면으로
-    window.location.href = 'dashboard.html';
+  const token = localStorage.getItem('auth_token');
+  if (token) {
+    // 아직 dashboard.html 없으면 일단 login으로 보내도 됨
+    // window.location.href = './dashboard.html';
+    window.location.href = './login.html'; // 임시
   } else {
-    // 아니면 로그인 화면으로
-    window.location.href = 'login.html';
+    window.location.href = './login.html';
   }
 </script>
-
 </body>
 </html>
