@@ -1,0 +1,105 @@
+/* 전체 배경 */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #4b53d3;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 가운데 정렬용 */
+.login-wrapper {
+  width: 100%;
+  max-width: 380px;
+  padding: 20px;
+}
+
+/* 카드 UI */
+.login-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* 타이틀 */
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+/* 입력 그룹 */
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #666;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* 에러 상태 */
+.input-group.error input {
+  border-color: #e74c3c;
+}
+
+.error-text {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+/* 비밀번호 찾기 */
+.find-password {
+  text-align: right;
+  margin-bottom: 18px;
+}
+
+.find-password a {
+  font-size: 12px;
+  color: #777;
+  text-decoration: none;
+}
+
+/* 로그인 버튼 */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #4b53d3;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #3f47b8;
+}
+
+/* 회원가입 */
+.signup {
+  margin-top: 18px;
+  font-size: 13px;
+  text-align: center;
+  color: #666;
+}
+
+.signup a {
+  color: #4b53d3;
+  text-decoration: none;
+  font-weight: bold;
+}
